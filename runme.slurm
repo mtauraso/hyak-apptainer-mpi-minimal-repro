@@ -58,8 +58,18 @@ export OMPI_MCA_mpi_cuda_support=0
 # but it just causes a different crash in the broadcast test
 export UCX_POSIX_USE_PROC_LINK=n
 
+
+#Check ldd for both of these executables just to make sure loading is working
+echo "In-Container ldd output for mpitests-osu_hello"
+${apptainer_cmd} ldd /usr/lib64/openmpi/bin/mpitests-osu_hello | sed -e '1,8d'
+
+echo "In-Container ldd output for mpitests-osu_bcast"
+${apptainer_cmd} ldd /usr/lib64/openmpi/bin/mpitests-osu_bcast | sed -e '1,8d'
+
+# When the MPI_Init crash happens, both commands should fail.
 mpirun -np $SLURM_NTASKS ${apptainer_cmd} mpitests-osu_hello
 
+# When the MPI_Bcast crash happens, only this command fails
 mpirun -np $SLURM_NTASKS ${apptainer_cmd} mpitests-osu_bcast
 
 
