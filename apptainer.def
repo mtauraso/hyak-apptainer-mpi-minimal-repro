@@ -1,0 +1,29 @@
+Bootstrap: docker
+From: rockylinux:8.5.20220308
+%post
+	# Enable EPEL (Extra packages for enterprise linux)
+        # and the powertools/crb repositories
+        #sed -i s/enabled=0$/enabled=1/g /etc/yum.repos.d/Rocky-PowerTools.repo
+        #dnf -y install epel-release
+
+	yum -y install mpitests-openmpi which
+
+        BUILD_DATE=$(date)
+        echo "export BUILD_DATE=\"${BUILD_DATE}\"" >> $APPTAINER_ENVIRONMENT
+
+%environment
+	# This gets mpitests utilities on path. When we bind hyak MPI
+	# Hyak MPI utils will be first on PATH.
+	export PATH="/usr/lib64/openmpi/bin/:$PATH"
+
+%runscript
+        echo "Container built: $BUILD_DATE"
+	echo "Output of mpirun -V loaded from $(dirname $(which mpirun)) :"
+        mpirun -V
+
+	echo "Output of ucx_info -v loaded from $(dirname $(which ucx_info)) :"
+
+        ucx_info -v
+
+        # Passthrough whatever command we get in arguments
+        "$@"
