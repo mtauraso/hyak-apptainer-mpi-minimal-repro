@@ -1,0 +1,318 @@
+In-Container PATH and LD_LIBRARY_PATH
+LD_LIBRARY_PATH=/usr/lib64/openmpi/lib/::/.singularity.d/libs
+PATH=/usr/lib64/openmpi/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+In-Container ldd output for hyak compiled osu_hello
+	linux-vdso.so.1 (0x00007ffc2bfdd000)
+	libm.so.6 => /lib64/libm.so.6 (0x00001511d33af000)
+	libmpi.so.40 => /usr/lib64/openmpi/lib/libmpi.so.40 (0x00001511d307f000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x00001511d2e5f000)
+	libc.so.6 => /lib64/libc.so.6 (0x00001511d2a9a000)
+	/lib64/ld-linux-x86-64.so.2 (0x00001511d3731000)
+	libopen-rte.so.40 => /usr/lib64/openmpi/lib/libopen-rte.so.40 (0x00001511d27df000)
+	libopen-orted-mpir.so => /usr/lib64/openmpi/lib/libopen-orted-mpir.so (0x00001511d25dd000)
+	libopen-pal.so.40 => /usr/lib64/openmpi/lib/libopen-pal.so.40 (0x00001511d232f000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00001511d212b000)
+	librt.so.1 => /lib64/librt.so.1 (0x00001511d1f23000)
+	libutil.so.1 => /lib64/libutil.so.1 (0x00001511d1d1f000)
+	libz.so.1 => /lib64/libz.so.1 (0x00001511d1b08000)
+	libhwloc.so.15 => /lib64/libhwloc.so.15 (0x00001511d18b8000)
+	libevent_core-2.1.so.6 => /lib64/libevent_core-2.1.so.6 (0x00001511d167f000)
+	libevent_pthreads-2.1.so.6 => /lib64/libevent_pthreads-2.1.so.6 (0x00001511d147c000)
+	libcrypto.so.1.1 => /lib64/libcrypto.so.1.1 (0x00001511d0f93000)
+In-Container ldd output for hyak compiled osu_bcast
+	linux-vdso.so.1 (0x00007ffc16dfd000)
+	libmpi.so.40 => /usr/lib64/openmpi/lib/libmpi.so.40 (0x000015146cb89000)
+	libstdc++.so.6 => /lib64/libstdc++.so.6 (0x000015146c7f4000)
+	libm.so.6 => /lib64/libm.so.6 (0x000015146c472000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x000015146c25a000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x000015146c03a000)
+	libc.so.6 => /lib64/libc.so.6 (0x000015146bc75000)
+	libopen-rte.so.40 => /usr/lib64/openmpi/lib/libopen-rte.so.40 (0x000015146b9ba000)
+	libopen-orted-mpir.so => /usr/lib64/openmpi/lib/libopen-orted-mpir.so (0x000015146b7b8000)
+	libopen-pal.so.40 => /usr/lib64/openmpi/lib/libopen-pal.so.40 (0x000015146b50a000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x000015146b306000)
+	librt.so.1 => /lib64/librt.so.1 (0x000015146b0fe000)
+	libutil.so.1 => /lib64/libutil.so.1 (0x000015146aefa000)
+	libz.so.1 => /lib64/libz.so.1 (0x000015146ace3000)
+	libhwloc.so.15 => /lib64/libhwloc.so.15 (0x000015146aa93000)
+	libevent_core-2.1.so.6 => /lib64/libevent_core-2.1.so.6 (0x000015146a85a000)
+	libevent_pthreads-2.1.so.6 => /lib64/libevent_pthreads-2.1.so.6 (0x000015146a657000)
+	/lib64/ld-linux-x86-64.so.2 (0x000015146ceb9000)
+	libcrypto.so.1.1 => /lib64/libcrypto.so.1.1 (0x000015146a16e000)
+Running Hyak-compiled versions of osu_hello and osu_bcast
+Container built: Wed Feb  8 21:12:44 UTC 2023
+Container built: Wed Feb  8 21:12:44 UTC 2023
+Output of mpirun -V loaded from /usr/lib64/openmpi/bin :
+Output of mpirun -V loaded from /usr/lib64/openmpi/bin :
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+Output of ucx_info -v loaded from /usr/bin :
+Output of ucx_info -v loaded from /usr/bin :
+# UCT version=1.10.1 revision 6a5856e
+# configured with: --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info --disable-optimizations --disable-logging --disable-debug --disable-assertions --disable-params-check --without-java --enable-cma --without-cuda --without-gdrcopy --with-verbs --without-cm --without-knem --with-rdmacm --without-rocm --without-xpmem --without-ugni
+# UCT version=1.10.1 revision 6a5856e
+# configured with: --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info --disable-optimizations --disable-logging --disable-debug --disable-assertions --disable-params-check --without-java --enable-cma --without-cuda --without-gdrcopy --with-verbs --without-cm --without-knem --with-rdmacm --without-rocm --without-xpmem --without-ugni
+n3320:rank0.osu_hello: unknown link width 0x10
+n3320:rank1.osu_hello: unknown link width 0x10
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   n3320
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open MPI failed an OFI Libfabric library call (fi_endpoint).  This is highly
+unusual; your job may behave unpredictably (and/or abort) after this.
+
+  Local host: n3320
+  Location: mtl_ofi_component.c:513
+  Error: Invalid argument (22)
+--------------------------------------------------------------------------
+[1675893465.997099] [n3320:35522:0]       mm_posix.c:195  UCX  ERROR open(file_name=/proc/35523/fd/27 flags=0x0) failed: Permission denied
+[1675893465.997111] [n3320:35522:0]          mm_ep.c:155  UCX  ERROR mm ep failed to connect to remote FIFO id 0xc0000006c0008ac3: Shared memory error
+[n3320:35522] pml_ucx.c:419  Error: ucp_ep_create(proc=1) failed: Shared memory error
+--------------------------------------------------------------------------
+It looks like MPI_INIT failed for some reason; your parallel process is
+likely to abort.  There are many reasons that a parallel process can
+fail during MPI_INIT; some of which are due to configuration or environment
+problems.  This failure appears to be an internal failure; here's some
+additional information (which may only be relevant to an Open MPI
+developer):
+
+  PML add procs failed
+  --> Returned "Error" (-1) instead of "Success" (0)
+--------------------------------------------------------------------------
+[1675893465.998218] [n3320:35523:0]       mm_posix.c:195  UCX  ERROR open(file_name=/proc/35522/fd/27 flags=0x0) failed: Permission denied
+[1675893465.998234] [n3320:35523:0]          mm_ep.c:155  UCX  ERROR mm ep failed to connect to remote FIFO id 0xc0000006c0008ac2: Shared memory error
+[n3320:35523] pml_ucx.c:419  Error: ucp_ep_create(proc=0) failed: Shared memory error
+[n3320:35522] *** An error occurred in MPI_Init
+[n3320:35522] *** reported by process [2334130177,0]
+[n3320:35522] *** on a NULL communicator
+[n3320:35522] *** Unknown error
+[n3320:35522] *** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+[n3320:35522] ***    and potentially your MPI job)
+[n3320:34459] 1 more process has sent help message help-mpi-btl-openib.txt / error in device init
+[n3320:34459] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[n3320:34459] 1 more process has sent help message help-mtl-ofi.txt / OFI call fail
+[n3320:34459] 1 more process has sent help message help-mpi-runtime.txt / mpi_init:startup:internal-failure
+[n3320:34459] 1 more process has sent help message help-mpi-errors.txt / mpi_errors_are_fatal unknown handle
+Container built: Wed Feb  8 21:12:44 UTC 2023
+Output of mpirun -V loaded from /usr/lib64/openmpi/bin :
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+Output of ucx_info -v loaded from /usr/bin :
+# UCT version=1.10.1 revision 6a5856e
+# configured with: --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info --disable-optimizations --disable-logging --disable-debug --disable-assertions --disable-params-check --without-java --enable-cma --without-cuda --without-gdrcopy --with-verbs --without-cm --without-knem --with-rdmacm --without-rocm --without-xpmem --without-ugni
+Container built: Wed Feb  8 21:12:44 UTC 2023
+Output of mpirun -V loaded from /usr/lib64/openmpi/bin :
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+Output of ucx_info -v loaded from /usr/bin :
+# UCT version=1.10.1 revision 6a5856e
+# configured with: --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info --disable-optimizations --disable-logging --disable-debug --disable-assertions --disable-params-check --without-java --enable-cma --without-cuda --without-gdrcopy --with-verbs --without-cm --without-knem --with-rdmacm --without-rocm --without-xpmem --without-ugni
+n3320:rank0.osu_bcast: unknown link width 0x10
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   n3320
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+n3320:rank1.osu_bcast: unknown link width 0x10
+--------------------------------------------------------------------------
+Open MPI failed an OFI Libfabric library call (fi_endpoint).  This is highly
+unusual; your job may behave unpredictably (and/or abort) after this.
+
+  Local host: n3320
+  Location: mtl_ofi_component.c:513
+  Error: Invalid argument (22)
+--------------------------------------------------------------------------
+[n3320:36511] pml_ucx.c:419  Error: ucp_ep_create(proc=0) failed: Shared memory error
+[1675893469.365699] [n3320:36511:0]       mm_posix.c:195  UCX  ERROR open(file_name=/proc/36497/fd/27 flags=0x0) failed: Permission denied
+[1675893469.365710] [n3320:36511:0]          mm_ep.c:155  UCX  ERROR mm ep failed to connect to remote FIFO id 0xc0000006c0008e91: Shared memory error
+--------------------------------------------------------------------------
+It looks like MPI_INIT failed for some reason; your parallel process is
+likely to abort.  There are many reasons that a parallel process can
+fail during MPI_INIT; some of which are due to configuration or environment
+problems.  This failure appears to be an internal failure; here's some
+additional information (which may only be relevant to an Open MPI
+developer):
+
+  PML add procs failed
+  --> Returned "Error" (-1) instead of "Success" (0)
+--------------------------------------------------------------------------
+[n3320:36511] *** An error occurred in MPI_Init
+[n3320:36511] *** reported by process [2272722945,1]
+[n3320:36511] *** on a NULL communicator
+[n3320:36511] *** Unknown error
+[n3320:36511] *** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+[n3320:36511] ***    and potentially your MPI job)
+[n3320:36497] pml_ucx.c:419  Error: ucp_ep_create(proc=1) failed: Shared memory error
+[1675893469.367647] [n3320:36497:0]       mm_posix.c:195  UCX  ERROR open(file_name=/proc/36511/fd/27 flags=0x0) failed: Permission denied
+[1675893469.367665] [n3320:36497:0]          mm_ep.c:155  UCX  ERROR mm ep failed to connect to remote FIFO id 0xc0000006c0008e9f: Shared memory error
+[n3320:35532] 1 more process has sent help message help-mpi-btl-openib.txt / error in device init
+[n3320:35532] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[n3320:35532] 1 more process has sent help message help-mtl-ofi.txt / OFI call fail
+[n3320:35532] 1 more process has sent help message help-mpi-runtime.txt / mpi_init:startup:internal-failure
+In-Container ldd output for rocky compiled osu_hello
+	linux-vdso.so.1 (0x00007ffeac915000)
+	libm.so.6 => /lib64/libm.so.6 (0x000014ef8fc28000)
+	libmpi.so.40 => /usr/lib64/openmpi/lib/libmpi.so.40 (0x000014ef8f8f8000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x000014ef8f6d8000)
+	libc.so.6 => /lib64/libc.so.6 (0x000014ef8f313000)
+	/lib64/ld-linux-x86-64.so.2 (0x000014ef901ad000)
+	libopen-rte.so.40 => /usr/lib64/openmpi/lib/libopen-rte.so.40 (0x000014ef8f058000)
+	libopen-orted-mpir.so => /usr/lib64/openmpi/lib/libopen-orted-mpir.so (0x000014ef8ee56000)
+	libopen-pal.so.40 => /usr/lib64/openmpi/lib/libopen-pal.so.40 (0x000014ef8eba8000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x000014ef8e9a4000)
+	librt.so.1 => /lib64/librt.so.1 (0x000014ef8e79c000)
+	libutil.so.1 => /lib64/libutil.so.1 (0x000014ef8e598000)
+	libz.so.1 => /lib64/libz.so.1 (0x000014ef8e381000)
+	libhwloc.so.15 => /lib64/libhwloc.so.15 (0x000014ef8e131000)
+	libevent_core-2.1.so.6 => /lib64/libevent_core-2.1.so.6 (0x000014ef8def8000)
+	libevent_pthreads-2.1.so.6 => /lib64/libevent_pthreads-2.1.so.6 (0x000014ef8dcf5000)
+	libcrypto.so.1.1 => /lib64/libcrypto.so.1.1 (0x000014ef8d80c000)
+In-Container ldd output for rocky compiled osu_bcast
+	linux-vdso.so.1 (0x00007ffc383f6000)
+	libmpi_cxx.so.40 => /usr/lib64/openmpi/lib/libmpi_cxx.so.40 (0x000014ce42563000)
+	libmpi.so.40 => /usr/lib64/openmpi/lib/libmpi.so.40 (0x000014ce42233000)
+	libstdc++.so.6 => /lib64/libstdc++.so.6 (0x000014ce41e9e000)
+	libm.so.6 => /lib64/libm.so.6 (0x000014ce41b1c000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x000014ce41904000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x000014ce416e4000)
+	libc.so.6 => /lib64/libc.so.6 (0x000014ce4131f000)
+	libopen-rte.so.40 => /usr/lib64/openmpi/lib/libopen-rte.so.40 (0x000014ce41064000)
+	libopen-orted-mpir.so => /usr/lib64/openmpi/lib/libopen-orted-mpir.so (0x000014ce40e62000)
+	libopen-pal.so.40 => /usr/lib64/openmpi/lib/libopen-pal.so.40 (0x000014ce40bb4000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x000014ce409b0000)
+	librt.so.1 => /lib64/librt.so.1 (0x000014ce407a8000)
+	libutil.so.1 => /lib64/libutil.so.1 (0x000014ce405a4000)
+	libz.so.1 => /lib64/libz.so.1 (0x000014ce4038d000)
+	libhwloc.so.15 => /lib64/libhwloc.so.15 (0x000014ce4013d000)
+	libevent_core-2.1.so.6 => /lib64/libevent_core-2.1.so.6 (0x000014ce3ff04000)
+	libevent_pthreads-2.1.so.6 => /lib64/libevent_pthreads-2.1.so.6 (0x000014ce3fd01000)
+	/lib64/ld-linux-x86-64.so.2 (0x000014ce42998000)
+	libcrypto.so.1.1 => /lib64/libcrypto.so.1.1 (0x000014ce3f818000)
+Running Rocky compiled osu_hello and osu_bcast
+Container built: Wed Feb  8 21:12:44 UTC 2023
+Output of mpirun -V loaded from /usr/lib64/openmpi/bin :
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+Output of ucx_info -v loaded from /usr/bin :
+# UCT version=1.10.1 revision 6a5856e
+# configured with: --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info --disable-optimizations --disable-logging --disable-debug --disable-assertions --disable-params-check --without-java --enable-cma --without-cuda --without-gdrcopy --with-verbs --without-cm --without-knem --with-rdmacm --without-rocm --without-xpmem --without-ugni
+Container built: Wed Feb  8 21:12:44 UTC 2023
+Output of mpirun -V loaded from /usr/lib64/openmpi/bin :
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+Output of ucx_info -v loaded from /usr/bin :
+# UCT version=1.10.1 revision 6a5856e
+# configured with: --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info --disable-optimizations --disable-logging --disable-debug --disable-assertions --disable-params-check --without-java --enable-cma --without-cuda --without-gdrcopy --with-verbs --without-cm --without-knem --with-rdmacm --without-rocm --without-xpmem --without-ugni
+n3320:rank1.mpitests-osu_hello: unknown link width 0x10
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   n3320
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open MPI failed an OFI Libfabric library call (fi_endpoint).  This is highly
+unusual; your job may behave unpredictably (and/or abort) after this.
+
+  Local host: n3320
+  Location: mtl_ofi_component.c:513
+  Error: Invalid argument (22)
+--------------------------------------------------------------------------
+n3320:rank0.mpitests-osu_hello: unknown link width 0x10
+[n3320:38851] pml_ucx.c:419  Error: ucp_ep_create(proc=1) failed: Shared memory error
+[1675893478.943556] [n3320:38851:0]       mm_posix.c:195  UCX  ERROR open(file_name=/proc/38782/fd/27 flags=0x0) failed: Permission denied
+[1675893478.943569] [n3320:38851:0]          mm_ep.c:155  UCX  ERROR mm ep failed to connect to remote FIFO id 0xc0000006c000977e: Shared memory error
+--------------------------------------------------------------------------
+It looks like MPI_INIT failed for some reason; your parallel process is
+likely to abort.  There are many reasons that a parallel process can
+fail during MPI_INIT; some of which are due to configuration or environment
+problems.  This failure appears to be an internal failure; here's some
+additional information (which may only be relevant to an Open MPI
+developer):
+
+  PML add procs failed
+  --> Returned "Error" (-1) instead of "Success" (0)
+--------------------------------------------------------------------------
+[n3320:38851] *** An error occurred in MPI_Init
+[n3320:38851] *** reported by process [2682191873,0]
+[n3320:38851] *** on a NULL communicator
+[n3320:38851] *** Unknown error
+[n3320:38851] *** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+[n3320:38851] ***    and potentially your MPI job)
+[n3320:37476] 1 more process has sent help message help-mpi-btl-openib.txt / error in device init
+[n3320:37476] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[n3320:37476] 1 more process has sent help message help-mtl-ofi.txt / OFI call fail
+[warn] Epoll MOD(1) on fd 25 failed.  Old events were 6; read change was 0 (none); write change was 2 (del): Bad file descriptor
+[warn] Epoll MOD(4) on fd 25 failed.  Old events were 6; read change was 2 (del); write change was 0 (none): Bad file descriptor
+Container built: Wed Feb  8 21:12:44 UTC 2023
+Output of mpirun -V loaded from /usr/lib64/openmpi/bin :
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+Output of ucx_info -v loaded from /usr/bin :
+Container built: Wed Feb  8 21:12:44 UTC 2023
+# UCT version=1.10.1 revision 6a5856e
+# configured with: --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info --disable-optimizations --disable-logging --disable-debug --disable-assertions --disable-params-check --without-java --enable-cma --without-cuda --without-gdrcopy --with-verbs --without-cm --without-knem --with-rdmacm --without-rocm --without-xpmem --without-ugni
+Output of mpirun -V loaded from /usr/lib64/openmpi/bin :
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+Output of ucx_info -v loaded from /usr/bin :
+# UCT version=1.10.1 revision 6a5856e
+# configured with: --build=x86_64-redhat-linux-gnu --host=x86_64-redhat-linux-gnu --program-prefix= --disable-dependency-tracking --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --sysconfdir=/etc --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib64 --libexecdir=/usr/libexec --localstatedir=/var --sharedstatedir=/var/lib --mandir=/usr/share/man --infodir=/usr/share/info --disable-optimizations --disable-logging --disable-debug --disable-assertions --disable-params-check --without-java --enable-cma --without-cuda --without-gdrcopy --with-verbs --without-cm --without-knem --with-rdmacm --without-rocm --without-xpmem --without-ugni
+n3320:rank1.mpitests-osu_bcast: unknown link width 0x10
+n3320:rank0.mpitests-osu_bcast: unknown link width 0x10
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   n3320
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open MPI failed an OFI Libfabric library call (fi_endpoint).  This is highly
+unusual; your job may behave unpredictably (and/or abort) after this.
+
+  Local host: n3320
+  Location: mtl_ofi_component.c:513
+  Error: Invalid argument (22)
+--------------------------------------------------------------------------
+[n3320:40192] pml_ucx.c:419  Error: ucp_ep_create(proc=1) failed: Shared memory error
+[1675893481.973262] [n3320:40192:0]       mm_posix.c:195  UCX  ERROR open(file_name=/proc/40179/fd/27 flags=0x0) failed: Permission denied
+[1675893481.973276] [n3320:40192:0]          mm_ep.c:155  UCX  ERROR mm ep failed to connect to remote FIFO id 0xc0000006c0009cf3: Shared memory error
+[1675893481.973491] [n3320:40179:0]       mm_posix.c:195  UCX  ERROR open(file_name=/proc/40192/fd/27 flags=0x0) failed: Permission denied
+[1675893481.973504] [n3320:40179:0]          mm_ep.c:155  UCX  ERROR mm ep failed to connect to remote FIFO id 0xc0000006c0009d00: Shared memory error
+[n3320:40179] pml_ucx.c:419  Error: ucp_ep_create(proc=0) failed: Shared memory error
+--------------------------------------------------------------------------
+It looks like MPI_INIT failed for some reason; your parallel process is
+likely to abort.  There are many reasons that a parallel process can
+fail during MPI_INIT; some of which are due to configuration or environment
+problems.  This failure appears to be an internal failure; here's some
+additional information (which may only be relevant to an Open MPI
+developer):
+
+  PML add procs failed
+  --> Returned "Error" (-1) instead of "Success" (0)
+--------------------------------------------------------------------------
+[n3320:40192] *** An error occurred in MPI_Init
+[n3320:40192] *** reported by process [2591031297,0]
+[n3320:40192] *** on a NULL communicator
+[n3320:40192] *** Unknown error
+[n3320:40192] *** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+[n3320:40192] ***    and potentially your MPI job)
+[n3320:38859] 1 more process has sent help message help-mpi-btl-openib.txt / error in device init
+[n3320:38859] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[n3320:38859] 1 more process has sent help message help-mtl-ofi.txt / OFI call fail
+[n3320:38859] 1 more process has sent help message help-mpi-runtime.txt / mpi_init:startup:internal-failure
+[n3320:38859] 1 more process has sent help message help-mpi-errors.txt / mpi_errors_are_fatal unknown handle
