@@ -8,7 +8,7 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
 #SBATCH --ntasks-per-node=2
-#SBATCH --mem-per-cpu=4G
+# SBATCH --mem-per-node=8G
 #
 #Don't move any environment variables into slurm-land
 #SBATCH --export=NONE
@@ -18,8 +18,8 @@
 
 
 #Load and bind MPI and UCX
-OMPI_VERSION="4.1.3"
-UCX_VERSION="1.12.1"
+OMPI_VERSION="4.1.1-2"
+UCX_VERSION="1.10.0"
 module load ompi/$OMPI_VERSION
 module load ucx/$UCX_VERSION
 MPI_DIR="/sw/ompi/$OMPI_VERSION"
@@ -42,30 +42,45 @@ export APPTAINERENV_PREPEND_PATH="$MPI_DIR/bin:$UCX_DIR/bin"
 export APPTAINERENV_LD_LIBRARY_PATH="$MPI_DIR/lib:$UCX_DIR/lib:\$LD_LIBRARY_PATH"
 
 
-# Run the apptainer (binding OMPI and UCX)
+# The apptainer that binds OMPI and UCX
 apptainer_cmd="apptainer run --bind $MPI_DIR:$MPI_DIR:ro,$UCX_DIR:$UCX_DIR:ro apptainer.sif" 
 
 echo "In-Container PATH and LD_LIBRARY_PATH"
 ${apptainer_cmd} env | grep -e '^PATH' -e '^LD_LIBRARY_PATH'
 
 # Disabling CUDA so it is not in the log. mpitest commands should not need it
-export OMPI_MCA_mpi_cuda_support=0
-
+#export OMPI_MCA_mpi_cuda_support=0
 
 # Try commenting this in/out to reproduce the two crashes
 #
 # I found this as a 'solution' on the internet to apptainer and the MPI_Init crash
 # but it just causes a different crash in the broadcast test
-export UCX_POSIX_USE_PROC_LINK=n
+#export UCX_POSIX_USE_PROC_LINK=n
 
 
 #Check ldd for both of these executables just to make sure loading is working
-echo "In-Container ldd output for mpitests-osu_hello"
+echo "In-Container ldd output for hyak compiled osu_hello"
+${apptainer_cmd} ldd /opt/ompitest-install/bin/osu_hello | sed -e '1,8d'
+
+echo "In-Container ldd output for hyak compiled osu_bcast"
+${apptainer_cmd} ldd /opt/ompitest-install/bin/osu_bcast | sed -e '1,8d'
+
+echo "Running Hyak-compiled versions of osu_hello and osu_bcast"
+# When the MPI_Init crash happens, both commands should fail.
+mpirun -np $SLURM_NTASKS ${apptainer_cmd} /opt/ompitest-install/bin/osu_hello
+
+# When the MPI_Bcast crash happens, only this command fails
+mpirun -np $SLURM_NTASKS ${apptainer_cmd} /opt/ompitest-install/bin/osu_bcast
+
+
+#Check ldd for both of these executables just to make sure loading is working
+echo "In-Container ldd output for Rocky compiled osu_hello"
 ${apptainer_cmd} ldd /usr/lib64/openmpi/bin/mpitests-osu_hello | sed -e '1,8d'
 
-echo "In-Container ldd output for mpitests-osu_bcast"
+echo "In-Container ldd output for Rocky compiled osu_bcast"
 ${apptainer_cmd} ldd /usr/lib64/openmpi/bin/mpitests-osu_bcast | sed -e '1,8d'
 
+echo "Running Rocky-compiled versions of osu_hello and osu_bcast"
 # When the MPI_Init crash happens, both commands should fail.
 mpirun -np $SLURM_NTASKS ${apptainer_cmd} mpitests-osu_hello
 

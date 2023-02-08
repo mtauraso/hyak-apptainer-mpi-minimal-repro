@@ -1,15 +1,58 @@
 Bootstrap: docker
 From: rockylinux:8.5.20220308
+
+%files
+	# Copy the locally-compiled MPI test binaries into the container
+	build/osu-micro-benchmarks-7.0.1-install/libexec/osu-micro-benchmarks/mpi/startup/*    /opt/ompitest-install/bin/
+	build/osu-micro-benchmarks-7.0.1-install/libexec/osu-micro-benchmarks/mpi/collective/* /opt/ompitest-install/bin/
+	build/osu-micro-benchmarks-7.0.1-install/libexec/osu-micro-benchmarks/mpi/one-sided/*  /opt/ompitest-install/bin/
+	build/osu-micro-benchmarks-7.0.1-install/libexec/osu-micro-benchmarks/mpi/pt2pt/*      /opt/ompitest-install/bin/
+	
+
 %post
-	yum -y install mpitests-openmpi which
+
+	#echo "baseurl=http://dl.rockylinux.org/vault/rocky/8.5/AppStream/\$basearch/os/" >> /etc/yum.repos.d/Rocky-AppStream.repo
+
+	# Switch the main rocky repos over to vault for 8.5 so we can install the "old"
+        # MPI packages which are closest to version-match of what is available in hyak Lmods
+	#
+	sed -i 's/repo=/repo=vault-/' /etc/yum.repos.d/Rocky-AppStream.repo
+	sed -i 's/$releasever/$releasever.5/' /etc/yum.repos.d/Rocky-AppStream.repo
+	sed -i 's/repo=/repo=vault-/' /etc/yum.repos.d/Rocky-BaseOS.repo
+	sed -i 's/$releasever/$releasever.5/' /etc/yum.repos.d/Rocky-BaseOS.repo
+	sed -i 's/repo=/repo=vault-/' /etc/yum.repos.d/Rocky-Extras.repo
+	sed -i 's/$releasever/$releasever.5/' /etc/yum.repos.d/Rocky-Extras.repo
+
+	echo "Contents of Rocky-Appstream.repo"
+	cat /etc/yum.repos.d/Rocky-AppStream.repo
+	echo "Contents of Rocky-BaseOS.repo"
+	cat /etc/yum.repos.d/Rocky-BaseOS.repo
+	echo "Contents of Rocky-Extras.repo"
+	cat /etc/yum.repos.d/Rocky-Extras.repo
+
+	dnf clean all
+	
+	yum --showduplicates list openmpi
+	yum --showduplicates list ucx
+	#yum --showduplicates list cuda
+
+	yum -y --nobest install ucx-1.10.1-2.el8  openmpi-4.1.1-2.el8 mpitests-openmpi which
+
+	#yum -y install mpitests-openmpi which
 
         BUILD_DATE=$(date)
         echo "export BUILD_DATE=\"${BUILD_DATE}\"" >> $APPTAINER_ENVIRONMENT
 
 %environment
-	# This gets mpitests utilities on path. When we bind hyak MPI
-	# Hyak MPI utils will be first on PATH.
+	# This gets mpitests utilities on path, as well as mpirun etc. 
+        # If we are binding MPI at runtime the bind run script will add 
+	# to these variables such that Hyak MPI will be first on 
+        # PATH and LD_LIBRARY_PATH
+        #
+	# If we are run in hybrid mode the in-container libraries will
+        # simply be first to load.
 	export PATH="/usr/lib64/openmpi/bin/:$PATH"
+	export LD_LIBRARY_PATH="/usr/lib64/openmpi/lib/:$LD_LIBRARY_PATH"
 
 %runscript
         echo "Container built: $BUILD_DATE"
