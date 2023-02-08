@@ -4,7 +4,7 @@ To reproduce REQ6697004, run the following, ensuring your working directory is t
 
 1. Before you start examine the version numbers in `apptainer.def`, and all of the `runme-*.slurm` files. Versions for OMPI and UCX should substantially match. A good cross-check here is `module avail ompi` and `module avail ucx`
 
-1. On a hyak compute node `./build_mpitests.sh` will download the mpi tests and compile them in `/build` This is necessary to do before constructing the apptainer. You can check this worked by running `sbatch runme-bare.slurm` from klone, which will run the newly-built `osu_hello` and `osu_bcast` tests without any apptainer.
+1. On a hyak compute node `./build_mpitests.sh` will download the mpi tests and compile them in `build/` This is necessary to do before constructing the apptainer. You can check this worked by running `sbatch runme-bare.slurm` from klone, which will run the newly-built `osu_hello` and `osu_bcast` tests without any apptainer.
 
 1. On a hyak compute node `build_apptainer.sh` will generate the `apptainer.sif` file, which has been constructed such that it will load in either hybrid or bind mode. The apptainer contains both mpi tests from Rocky and the ones built in the prior step. Hyak compiled are in `/opt/ompitest-install/bin/`. Rocky packaged are in `/usr/lib64/openmpi/bin/`
 
