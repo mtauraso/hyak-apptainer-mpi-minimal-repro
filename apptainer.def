@@ -1,7 +1,32 @@
 Bootstrap: docker
 From: rockylinux:8.5.20220308
 %post
-	yum -y install mpitests-openmpi which
+
+	#echo "baseurl=http://dl.rockylinux.org/vault/rocky/8.5/AppStream/\$basearch/os/" >> /etc/yum.repos.d/Rocky-AppStream.repo
+
+	sed -i 's/repo=/repo=vault-/' /etc/yum.repos.d/Rocky-AppStream.repo
+	sed -i 's/$releasever/$releasever.5/' /etc/yum.repos.d/Rocky-AppStream.repo
+	sed -i 's/repo=/repo=vault-/' /etc/yum.repos.d/Rocky-BaseOS.repo
+	sed -i 's/$releasever/$releasever.5/' /etc/yum.repos.d/Rocky-BaseOS.repo
+	sed -i 's/repo=/repo=vault-/' /etc/yum.repos.d/Rocky-Extras.repo
+	sed -i 's/$releasever/$releasever.5/' /etc/yum.repos.d/Rocky-Extras.repo
+
+	echo "Contents of Rocky-Appstream.repo"
+	cat /etc/yum.repos.d/Rocky-AppStream.repo
+	echo "Contents of Rocky-BaseOS.repo"
+	cat /etc/yum.repos.d/Rocky-BaseOS.repo
+	echo "Contents of Rocky-Extras.repo"
+	cat /etc/yum.repos.d/Rocky-Extras.repo
+
+	dnf clean all
+	
+	yum --showduplicates list openmpi
+	yum --showduplicates list ucx
+	yum --showduplicates list cuda
+
+	yum -y --nobest install ucx-1.10.1-2.el8  openmpi-4.1.1-2.el8 mpitests-openmpi which
+
+	#yum -y install mpitests-openmpi which
 
         BUILD_DATE=$(date)
         echo "export BUILD_DATE=\"${BUILD_DATE}\"" >> $APPTAINER_ENVIRONMENT
